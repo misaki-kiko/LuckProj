@@ -107,12 +107,14 @@
         {
             xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
         }
+        xmlhttp.open("GET","getdata.php?q=" + int ,true);
+
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            console.log(xmlhttp.responseText);
-            document.getElementById("qwq").innerHTML = xmlhttp.responseText;
+
+            qwq = xmlhttp.responseText;
         }
-        xmlhttp.open("GET","getdata.php?q="+ int,true);
         xmlhttp.send();
+        console.log(xmlhttp);
         return qwq;
     }
 </script>
