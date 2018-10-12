@@ -1,0 +1,51 @@
+div{
+    display: block;
+}
+h1 {
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+.section {
+    background: rgba(255,255,255,0.5);
+    box-shadow: 0 0 0.15em 0.15em rgba(0,0,0,0.125);
+    margin: 2em 5em 1em 5em;
+    padding: 2em;
+    /* float: left; */
+}
+.btn.btn-sm {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    height: 30px;
+    line-height: 28px;
+    min-width: 72px;
+}
+.btn-red-hollow {
+    color: #ca0c16 !important;
+    border: 1px solid #ca0c16 !important;
+    background-color: #fff !important;
+    -webkit-transition: background-color .1s ease-in-out;
+    transition: background-color .1s ease-in-out;
+}
+.btn {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding: 0 8px;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    height: 34px;
+    line-height: 32px;
+    min-width: 72px;
+    cursor: pointer;
+}
+table{
+    padding: 1em 0 0 0;
+}
+td{
+    padding:3em;
+}

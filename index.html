@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link href="style/basicstyle.css" rel="stylesheet">
+</head>
+<body bgcolor="#f0e68c">
+<div class ="section" id="app">
+    <a class ="btn btn-sm btn-red-hollow" id="demo">戳一下</a>
+    <h1 id ="qwq"></h1>
+    <table id ="display">
+        <tr>
+            <td>
+                <h1>一等奖</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2 id ="1"></h2>
+            </td>
+            <td >
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1>二等奖</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2 id="2"></h2>
+            </td>
+            <td >
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2 id="3"></h2>
+            </td>
+            <td >
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1>三等奖</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2 id="4"></h2>
+            </td>
+            <div>
+
+            </div>
+        </tr>
+        <tr>
+            <td>
+                <h2 id="5"></h2>
+            </td>
+            <div>
+
+            </div>
+        </tr>
+        <tr>
+            <td>
+                <h2 id="6"></h2>
+            </td>
+            <div>
+
+            </div>
+        </tr>
+    </table>
+</div>
+
+<script  type="text/javascript">
+    var random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    for (var i = 0; i < 6; i ++){
+        var randomNum = Math.random()*12;
+        randomNum = Math.floor(randomNum);
+        random[i] = randomNum;
+        for (var j = 0; j < i; j++){
+            while (random[i] === random[j]){
+                var randomNum = Math.random()*12;
+                randomNum = Math.floor(randomNum);
+                random[i] = randomNum;
+            }
+        }
+    }
+    document.getElementById("demo").onclick = function () {
+        document.getElementById("1").textContent = getdata(random[0]);
+        document.getElementById("2").textContent = getdata(random[1]);
+        document.getElementById("3").textContent = getdata(random[2]);
+        document.getElementById("4").textContent = getdata(random[3]);
+        document.getElementById("5").textContent = getdata(random[4]);
+        document.getElementById("6").textContent = getdata(random[5]);
+    }
+    function getdata(int) {
+        if (window.XMLHttpRequest)
+        {
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            console.log(xmlhttp.responseText);
+            document.getElementById("qwq").innerHTML = xmlhttp.responseText;
+        }
+        xmlhttp.open("GET","getdata.php?q="+ int,true);
+        xmlhttp.send();
+        return qwq;
+    }
+</script>
+</body>
+</html>
