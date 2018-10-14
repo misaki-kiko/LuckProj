@@ -53,31 +53,23 @@
             <td>
                 <h2 id="4"></h2>
             </td>
-            <div>
-
-            </div>
         </tr>
         <tr>
             <td>
                 <h2 id="5"></h2>
             </td>
-            <div>
-
-            </div>
         </tr>
         <tr>
             <td>
                 <h2 id="6"></h2>
             </td>
-            <div>
-
-            </div>
         </tr>
     </table>
 </div>
 
 <script  type="text/javascript">
-    var random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    var geted_data = ['','','','','',''];
+    var random = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     for (var i = 0; i < 6; i ++){
         var randomNum = Math.random()*12;
         randomNum = Math.floor(randomNum);
@@ -90,33 +82,57 @@
             }
         }
     }
+
+
     document.getElementById("demo").onclick = function () {
-        document.getElementById("1").textContent = getdata(random[0]);
-        document.getElementById("2").textContent = getdata(random[1]);
-        document.getElementById("3").textContent = getdata(random[2]);
-        document.getElementById("4").textContent = getdata(random[3]);
-        document.getElementById("5").textContent = getdata(random[4]);
-        document.getElementById("6").textContent = getdata(random[5]);
+        qwq();
     }
-    function getdata(int) {
-        if (window.XMLHttpRequest)
-        {
-            xmlhttp=new XMLHttpRequest();
-        }
-        else
-        {
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.open("GET","getdata.php?q=" + int ,true);
 
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-
-            qwq = xmlhttp.responseText;
+    function getdata(int, intt) {
+        // 请求地址
+        var url = "getdata.php?q=" + int;
+        //var url = 'data://text/plain;base64,SSBsb3ZlIFBIUAo=';
+        // xmlhttp对象
+        var xmlhttp = null;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
         }
-        xmlhttp.send();
-        console.log(xmlhttp);
-        return qwq;
+        if (xmlhttp != null) {
+            // 设置回调，请求结束后处理的事情
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4) { // 4 = 已经加载完成
+                    if (this.status == 200) { // 200 = 成功
+                        // 显示返回结果
+                        geted_data[intt] = this.responseText;
+                    } else {
+                        alert("Problem retrieving XML data");
+                    }
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send(null);
+            console.log(xmlhttp);
+        }
+        else {
+            alert("Your browser does not support XMLHTTP.");
+        }
     }
+    getdata(random[0],0);
+    getdata(random[1],1);
+    getdata(random[2],2);
+    getdata(random[3],3);
+    getdata(random[4],4);
+    getdata(random[5],5);
+    function qwq() {
+
+        document.getElementById("1").textContent = geted_data[0];
+        document.getElementById("2").textContent = geted_data[1];
+        document.getElementById("3").textContent = geted_data[2];
+        document.getElementById("4").textContent = geted_data[3];
+        document.getElementById("5").textContent = geted_data[4];
+        document.getElementById("6").textContent = geted_data[5];
+    }
+
 </script>
 </body>
 </html>

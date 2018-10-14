@@ -5,22 +5,29 @@ $username = 'qwq';
 $password ='qwq2333';
 $dbname = 'qwq';
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysql_connect('localhost', 'qwq', 'qwq2333');
+mysql_select_db('qwq');
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die(json_encode([
+        'code' => 40000,
+        'data' => 'failed to connect to db'
+    ]));
 }
-echo "connected";
-mysql_select_db("User", $conn);
 
-$sql = "SELECT * FROM `User` WHERE `id` LIKE “‘”.$q.“‘”";
+$sql = "SELECT * FROM `User` WHERE `id` = '$q'";
 
-$result = $conn->query($sql);
+$result = mysql_query($sql);
+$row = mysql_fetch_assoc($result);
 
-echo"<span>" . $row['name']."</span>";
-
-
-$result = $conn->query($sql);
+if (!$row) {// 没拿到数据
+    echo json_encode([
+        'code' => 40000,
+        'data' => 'no such id'
+    ]);
+} else {
+    echo $row["name"];
+}
 
 mysql_close($conn);
 ?>
